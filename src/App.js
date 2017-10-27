@@ -21,10 +21,14 @@ class BooksApp extends React.Component {
   }
 
   render() {
+    const { books } = this.state
+
     return (
       <div className='app'>
         <Switch>
-          <Route exact path='/' component={HomePage} />
+          <Route exact path='/' render={() =>
+            <HomePage books={books} />
+          }/>
           <Route exact path='/search' component={ShowSearchPage} />
         </Switch>
       </div>

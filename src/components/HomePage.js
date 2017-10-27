@@ -7,7 +7,7 @@ const HomePage = (props) => (
     <div className='list-books-title'>
       <h1>MyReads</h1>
     </div>
-    <BookList />
+    <BookList books={props.books}/>
     <div className='open-search'>
       <Link to='/search'>Add a book</Link>
     </div>
