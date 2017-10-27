@@ -2,7 +2,7 @@ import React from 'react'
 import BookShelf from './BookShelf'
 
 const BookList = (props) => {
-  const { books } = props
+  const { books, onBookStatusChange } = props
   const bookShelves = [
     {
       title: 'Currently Reading',
@@ -27,6 +27,7 @@ const BookList = (props) => {
               key={index}
               title={bookShelf.title}
               books={bookShelf.books}
+              onBookStatusChange={onBookStatusChange}
             />
           ))
         }

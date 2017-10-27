@@ -2,7 +2,7 @@ import React from 'react'
 import Book from './Book'
 
 const BookShelf = (props) => {
-  const { title, books } = props
+  const { title, books, onBookStatusChange } = props
 
   return (
     <div className='bookshelf'>
@@ -16,6 +16,8 @@ const BookShelf = (props) => {
                   title={book.title}
                   image_url={book.imageLinks.thumbnail}
                   authors={book.authors}
+                  status={book.shelf}
+                  onBookStatusChange={(newStatus) => onBookStatusChange(book, newStatus)}
                 />
               </li>
             ))
