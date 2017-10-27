@@ -3,6 +3,7 @@ import React from 'react'
 import './App.css'
 import ShowSearchPage from './components/ShowSearchPage'
 import HomePage from './components/HomePage'
+import { Switch, Route } from 'react-router-dom'
 
 class BooksApp extends React.Component {
   state = {
@@ -18,11 +19,10 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
-          <ShowSearchPage />
-        ) : (
-          <HomePage />
-        )}
+        <Switch>
+          <Route exact path='/' component={HomePage} />
+          <Route exact path='/search' component={ShowSearchPage} />
+        </Switch>
       </div>
     )
   }
