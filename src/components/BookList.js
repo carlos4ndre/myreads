@@ -3,7 +3,6 @@ import Book from './Book'
 
 const BookList = (props) => {
   const { books, onBookStatusChange } = props
-  console.log(books)
 
   return (
     <ol className='books-grid'>

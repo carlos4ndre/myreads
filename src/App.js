@@ -57,7 +57,7 @@ class BooksApp extends React.Component {
             <HomePage books={books} onBookStatusChange={this.handleBookStatusChange}/>
           }/>
           <Route exact path='/search' render={() =>
-            <ShowSearchPage onBookStatusChange={this.handleBookStatusChange}/>
+            <ShowSearchPage followingBooks={books} onBookStatusChange={this.handleBookStatusChange}/>
           }/>
         </Switch>
       </div>

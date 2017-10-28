@@ -4,9 +4,7 @@ import * as BooksAPI from '../BooksAPI'
 import BookList from './BookList'
 
 const INITIAL_STATE = {
-  searchResults: {
-    books: []
-  }
+  searchBooks: []
 }
 
 class ShowSearchPage extends Component {
@@ -29,16 +27,38 @@ class ShowSearchPage extends Component {
           return
         }
 
-        this.setState({ searchResults: { books: results}})
+        this.setState({ searchBooks: results })
       })
       .catch((error) => {
         console.log(error)
       })
   }
 
+  mapBooksWithId(books) {
+    const initialValue = {}
+    const mapIdBookReducer = (mappedBooks, book) => {
+      mappedBooks[book.id] = book
+      return mappedBooks
+    }
+    return books.reduce(mapIdBookReducer, initialValue)
+  }
+
+  updateBooksStatus(searchBooks, followingBooks) {
+    const mappedFollowingBooks = this.mapBooksWithId(followingBooks)
+
+    return searchBooks.map((book) => {
+      if (book.id in mappedFollowingBooks) {
+        const shelf = mappedFollowingBooks[book.id].shelf
+        return {...book, shelf}
+      }
+      return book
+    })
+  }
+
   render() {
-    const { searchResults } = this.state
-    const { onBookStatusChange } = this.props
+    const { searchBooks } = this.state
+    const { followingBooks, onBookStatusChange } = this.props
+    const searchBooksWithStatus = this.updateBooksStatus(searchBooks, followingBooks)
 
     return (
       <div className='search-books'>
@@ -53,7 +73,7 @@ class ShowSearchPage extends Component {
           </div>
         </div>
         <div className='search-books-results'>
-          <BookList books={searchResults.books} onBookStatusChange={onBookStatusChange}/>
+          <BookList books={searchBooksWithStatus} onBookStatusChange={onBookStatusChange}/>
         </div>
       </div>
     )
