@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from '../BooksAPI'
-import Book from './Book'
+import BookList from './BookList'
 
 const INITIAL_STATE = {
   searchResults: {
@@ -18,11 +18,20 @@ class ShowSearchPage extends Component {
   }
 
   searchBooks(query, maxResults=10) {
+    if (query.length === 0) {
+      return
+    }
+
     BooksAPI.search(query, maxResults)
-      .then((books) => {
-        this.setState({ searchResults: { books }})
+      .then((results) => {
+        if (results.error) {
+          console.log(results.error)
+          return
+        }
+
+        this.setState({ searchResults: { books: results}})
       })
-      .catch(function(error) {
+      .catch((error) => {
         console.log(error)
       })
   }
@@ -44,21 +53,7 @@ class ShowSearchPage extends Component {
           </div>
         </div>
         <div className='search-books-results'>
-          <ol className='books-grid'>
-          {
-            searchResults.books.map((book, index) => (
-              <li key={index}>
-                <Book
-                  title={book.title}
-                  image_url={book.imageLinks.thumbnail}
-                  authors={book.authors}
-                  status={book.shelf}
-                  onBookStatusChange={(newStatus) => onBookStatusChange(book, newStatus)}
-                />
-              </li>
-            ))
-          }
-        </ol>
+          <BookList books={searchResults.books} onBookStatusChange={onBookStatusChange}/>
         </div>
       </div>
     )

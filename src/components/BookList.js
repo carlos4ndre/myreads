@@ -1,38 +1,26 @@
 import React from 'react'
-import BookShelf from './BookShelf'
+import Book from './Book'
 
 const BookList = (props) => {
   const { books, onBookStatusChange } = props
-  const bookShelves = [
-    {
-      title: 'Currently Reading',
-      books: books.filter((b) => b.shelf === 'currentlyReading')
-    },
-    {
-      title: 'Want to Read',
-      books: books.filter((b) => b.shelf === 'wantToRead')
-    },
-    {
-      title: 'Read',
-      books: books.filter((b) => b.shelf === 'read')
-    }
-  ]
+  console.log(books)
 
   return (
-    <div className='list-books-content'>
-      <div>
-        {
-          bookShelves.map((bookShelf, index) => (
-            <BookShelf
-              key={index}
-              title={bookShelf.title}
-              books={bookShelf.books}
-              onBookStatusChange={onBookStatusChange}
-            />
-          ))
-        }
-      </div>
-    </div>
+    <ol className='books-grid'>
+    {
+      books.map((book, index) => (
+        <li key={index}>
+          <Book
+            title={book.title}
+            image_url={book.imageLinks && book.imageLinks.thumbnail}
+            authors={book.authors}
+            status={book.shelf}
+            onBookStatusChange={(newStatus) => onBookStatusChange(book, newStatus)}
+          />
+        </li>
+      ))
+    }
+    </ol>
   )
 }
 

@@ -2,7 +2,13 @@ import React from 'react'
 import BookStatusSelect from './BookStatusSelect'
 
 const Book = (props) => {
-  const { title, image_url, status, authors, onBookStatusChange } = props
+  const {
+    title,
+    image_url,
+    status,
+    authors,
+    onBookStatusChange
+  } = props
 
   return (
     <div className='book'>
@@ -15,7 +21,7 @@ const Book = (props) => {
       <div className='book-title'>{title}</div>
       <div className='book-authors'>
         {
-          authors.join(', ')
+          authors && authors.join(', ')
         }
       </div>
     </div>
