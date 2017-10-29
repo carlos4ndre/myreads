@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from '../BooksAPI'
 import BookList from './BookList'
+import SearchTerms from '../data/searchTerms'
 
 const INITIAL_STATE = {
   searchBooks: []
@@ -16,8 +17,13 @@ class ShowSearchPage extends Component {
     this.state = INITIAL_STATE
   }
 
+  isValidQuery(query = '') {
+    const lowerCasedQuery = query.toLowerCase()
+    return query.length !== 0 && SearchTerms.includes(lowerCasedQuery)
+  }
+
   searchBooks(query, maxResults=10) {
-    if (query.length === 0) {
+    if (!this.isValidQuery(query)) {
       return
     }
 
