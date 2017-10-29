@@ -29,12 +29,12 @@ const Book = (props) => {
   )
 }
 
-Book.propTypes = {
-  title: PropTypes.string,
-  imageUrl: PropTypes.string,
-  status: PropTypes.string,
+Book.PropTypes = {
+  title: PropTypes.string.required,
+  imageUrl: PropTypes.string.required,
+  status: PropTypes.string.required,
   authors: PropTypes.array,
-  onBookStatusChange: PropTypes.func,
+  onBookStatusChange: PropTypes.func.required,
 }
 
 export default Book

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Book from './Book'
 
 const BookList = (props) => {
@@ -22,6 +23,11 @@ const BookList = (props) => {
     }
     </ol>
   )
+}
+
+BookList.PropTypes = {
+  books: PropTypes.array.required,
+  onBookStatusChange: PropTypes.func.required,
 }
 
 export default BookList

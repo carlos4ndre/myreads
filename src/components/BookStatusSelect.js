@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const BookStatusSelect = (props) => {
   const {status, onChange} = props
@@ -12,6 +13,11 @@ const BookStatusSelect = (props) => {
       <option value='none'>None</option>
     </select>
   )
+}
+
+BookStatusSelect.PropTypes = {
+  status: PropTypes.string.required,
+  onChange: PropTypes.func.required,
 }
 
 export default BookStatusSelect
