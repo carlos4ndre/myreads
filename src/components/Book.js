@@ -34,7 +34,7 @@ Book.PropTypes = {
   imageUrl: PropTypes.string.required,
   status: PropTypes.string.required,
   authors: PropTypes.array,
-  onBookStatusChange: PropTypes.func.required,
+  onBookStatusChange: PropTypes.func.required
 }
 
 export default Book

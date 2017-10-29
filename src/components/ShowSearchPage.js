@@ -50,7 +50,7 @@ class ShowSearchPage extends Component {
     return searchBooks.map((book) => {
       if (book.id in mappedFollowingBooks) {
         const shelf = mappedFollowingBooks[book.id].shelf
-        return {...book, shelf}
+        return { ...book, shelf }
       }
       return book
     })
@@ -83,7 +83,7 @@ class ShowSearchPage extends Component {
 
 ShowSearchPage.PropTypes = {
   followingBooks: PropTypes.array.required,
-  onBookStatusChange: PropTypes.func.required,
+  onBookStatusChange: PropTypes.func.required
 }
 
 export default ShowSearchPage

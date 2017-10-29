@@ -27,7 +27,7 @@ const BookList = (props) => {
 
 BookList.PropTypes = {
   books: PropTypes.array.required,
-  onBookStatusChange: PropTypes.func.required,
+  onBookStatusChange: PropTypes.func.required
 }
 
 export default BookList

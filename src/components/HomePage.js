@@ -46,7 +46,7 @@ const HomePage = (props) => {
 
 HomePage.PropTypes = {
   books: PropTypes.array.required,
-  onBookStatusChange: PropTypes.func.required,
+  onBookStatusChange: PropTypes.func.required
 }
 
 export default HomePage

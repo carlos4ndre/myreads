@@ -17,7 +17,7 @@ const BookStatusSelect = (props) => {
 
 BookStatusSelect.PropTypes = {
   status: PropTypes.string.required,
-  onChange: PropTypes.func.required,
+  onChange: PropTypes.func.required
 }
 
 export default BookStatusSelect
