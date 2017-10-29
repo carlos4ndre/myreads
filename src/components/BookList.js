@@ -3,6 +3,7 @@ import Book from './Book'
 
 const BookList = (props) => {
   const { books, onBookStatusChange } = props
+  const defaultImage = require('../icons/blank-book.png')
 
   return (
     <ol className='books-grid'>
@@ -11,7 +12,7 @@ const BookList = (props) => {
         <li key={index}>
           <Book
             title={book.title}
-            image_url={book.imageLinks && book.imageLinks.thumbnail}
+            imageUrl={(book.imageLinks && book.imageLinks.thumbnail) || defaultImage}
             authors={book.authors}
             status={book.shelf}
             onBookStatusChange={(newStatus) => onBookStatusChange(book, newStatus)}

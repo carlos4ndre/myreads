@@ -1,10 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import BookStatusSelect from './BookStatusSelect'
 
 const Book = (props) => {
   const {
     title,
-    image_url,
+    imageUrl,
     status,
     authors,
     onBookStatusChange
@@ -13,7 +14,7 @@ const Book = (props) => {
   return (
     <div className='book'>
       <div className='book-top'>
-        <div className='book-cover' style={{ width: 128, height: 193, backgroundImage: `url(${image_url})` }}></div>
+        <div className='book-cover' style={{ width: 128, height: 193, backgroundImage: `url(${imageUrl})` }}></div>
         <div className='book-shelf-changer'>
           <BookStatusSelect status={status} onChange={onBookStatusChange}/>
         </div>
@@ -26,6 +27,14 @@ const Book = (props) => {
       </div>
     </div>
   )
+}
+
+Book.propTypes = {
+  title: PropTypes.string,
+  imageUrl: PropTypes.string,
+  status: PropTypes.string,
+  authors: PropTypes.array,
+  onBookStatusChange: PropTypes.func,
 }
 
 export default Book

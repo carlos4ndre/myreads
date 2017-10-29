@@ -1,9 +1,9 @@
 import React from 'react'
 import './App.css'
+import { Switch, Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import ShowSearchPage from './components/ShowSearchPage'
 import HomePage from './components/HomePage'
-import { Switch, Route } from 'react-router-dom'
 
 const INITIAL_STATE = {
   books: []
