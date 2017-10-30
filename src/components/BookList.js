@@ -9,17 +9,20 @@ const BookList = (props) => {
   return (
     <ol className='books-grid'>
     {
-      books.map((book, index) => (
-        <li key={index}>
-          <Book
-            title={book.title}
-            imageUrl={(book.imageLinks && book.imageLinks.thumbnail) || defaultImage}
-            authors={book.authors}
-            status={book.shelf}
-            onBookStatusChange={(newStatus) => onBookStatusChange(book, newStatus)}
-          />
-        </li>
-      ))
+      books.map((book, index) => {
+        const { title, imageLinks, authors, shelf } = book
+        return (
+          <li key={index}>
+            <Book
+              title={title}
+              imageUrl={(imageLinks && imageLinks.thumbnail) || defaultImage}
+              authors={authors}
+              status={shelf}
+              onBookStatusChange={(newStatus) => onBookStatusChange(book, newStatus)}
+            />
+          </li>
+        )
+      })
     }
     </ol>
   )
