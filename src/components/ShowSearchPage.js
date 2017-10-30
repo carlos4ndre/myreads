@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import * as BooksAPI from '../BooksAPI'
 import BookList from './BookList'
 import SearchTerms from '../data/searchTerms'
+import { Throttle } from 'react-throttle'
 
 const INITIAL_STATE = {
   searchBooks: []
@@ -72,11 +73,13 @@ class ShowSearchPage extends Component {
         <div className='search-books-bar'>
           <Link to='/' className='close-search'>Close</Link>
           <div className='search-books-input-wrapper'>
-            <input
-              type='text'
-              placeholder='Search by title or author'
-              onChange={(event) => this.searchBooks(event.target.value)}
-            />
+            <Throttle time='500' handler='onChange'>
+              <input
+                type='text'
+                placeholder='Search by title or author'
+                onChange={(event) => this.searchBooks(event.target.value)}
+              />
+            </Throttle>
           </div>
         </div>
         <div className='search-books-results'>
